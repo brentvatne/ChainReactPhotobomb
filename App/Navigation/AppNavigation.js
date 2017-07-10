@@ -9,7 +9,7 @@ const AppNavigation = StackNavigator(
     HomeScreen: { screen: HomeScreen },
     PhotosScreen: { screen: PhotosScreen },
     CameraScreen: { screen: CameraScreen, path: 'camera' },
-    PhotoDetailScreen: { screen: PhotoDetailScreen, path: 'photos/:id' }
+    PhotoDetailScreen: { screen: PhotoDetailScreen, path: 'photos/:id' },
   },
   {
     // Default config for all screens
@@ -20,7 +20,7 @@ const AppNavigation = StackNavigator(
       // header: {
       //   style: styles.header
       // }
-    }
+    },
   }
 );
 

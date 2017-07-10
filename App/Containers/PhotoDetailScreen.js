@@ -4,7 +4,7 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  ActivityIndicator
+  ActivityIndicator,
 } from 'react-native';
 import styles from './Styles/PhotoDetailScreenStyles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -13,11 +13,15 @@ import { gql, graphql } from 'react-apollo';
 class PhotoDetailScreen extends Component {
   state = {
     isLoading: false,
-    isFlagging: false
+    isFlagging: false,
   };
 
   renderLoading() {
-    return <View style={styles.loadingContainer}><ActivityIndicator /></View>;
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator />
+      </View>
+    );
   }
 
   flagPhoto = async () => {
@@ -28,8 +32,8 @@ class PhotoDetailScreen extends Component {
       this.setState({ isFlagging: true });
       await this.props.mutate({
         variables: {
-          photoId: photo.id
-        }
+          photoId: photo.id,
+        },
       });
 
       this.props.navigation.goBack(null);
@@ -57,8 +61,7 @@ class PhotoDetailScreen extends Component {
 
         <TouchableOpacity
           onPress={() => navigation.goBack(null)}
-          style={styles.close}
-        >
+          style={styles.close}>
           <Icon name="close" style={styles.closeIcon} />
         </TouchableOpacity>
 

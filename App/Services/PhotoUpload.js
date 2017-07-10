@@ -7,7 +7,7 @@ export default async function(photo) {
     uri: photo.path,
     name: 'photo.jpg',
     filename: 'photo.jpg',
-    type: 'image/jpg'
+    type: 'image/jpg',
   };
 
   let formData = new FormData();
@@ -22,9 +22,9 @@ export default async function(photo) {
     method: 'POST',
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'multipart/form-data; boundary=asdf'
+      'Content-Type': 'multipart/form-data; boundary=asdf',
     },
-    body: formData
+    body: formData,
   };
 
   const result = await fetch(FILE_UPLOAD_API, fetchOptions);

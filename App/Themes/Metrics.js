@@ -17,8 +17,8 @@ const metrics = {
   images: {
     small: 20,
     medium: 40,
-    large: 60
-  }
+    large: 60,
+  },
 };
 
 export default metrics;

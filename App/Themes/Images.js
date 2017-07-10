@@ -21,8 +21,8 @@ const images = {
     require('../Images/Props/bunny.png'),
     require('../Images/Props/pirate1.png'),
     require('../Images/Props/pirate2.png'),
-    require('../Images/Props/witch.png')
-  ]
+    require('../Images/Props/witch.png'),
+  ],
 };
 
 export default images;

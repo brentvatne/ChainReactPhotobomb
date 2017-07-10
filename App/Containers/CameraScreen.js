@@ -6,7 +6,7 @@ import { gql, graphql } from 'react-apollo';
 import uploadPhoto from '../Services/PhotoUpload';
 import PropPicker from '../Components/PropPicker';
 import TransformableImage from '../Components/TransformableImage';
-import { takeSnapshot } from 'react-native-view-shot';
+import { takeSnapshotAsync } from 'expo';
 import { Colors } from '../Themes';
 import { allPhotosQuery } from './HomeScreen';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -16,7 +16,7 @@ class CameraScreen extends Component {
     currentPicture: {},
     isShowingPreview: false,
     isUploading: false,
-    propImages: []
+    propImages: [],
   };
 
   /**
@@ -26,9 +26,9 @@ class CameraScreen extends Component {
     const { currentPicture } = this.state;
 
     try {
-      const path = await takeSnapshot(this.imageComponent, {
+      const path = await takeSnapshotAsync(this.imageComponent, {
         format: 'jpeg',
-        quality: 0.9
+        quality: 0.9,
       });
 
       return { path };
@@ -52,8 +52,8 @@ class CameraScreen extends Component {
       await this.props.createPhoto({
         // refetchQueries: [{ query: allPhotosQuery }],
         variables: {
-          fileId: image.id
-        }
+          fileId: image.id,
+        },
       });
 
       this.props.navigation.goBack();
@@ -130,17 +130,14 @@ class CameraScreen extends Component {
         <View
           style={styles.imageContainer}
           collapsable={false}
-          ref={i => (this.imageComponent = i)}
-        >
+          ref={i => (this.imageComponent = i)}>
           <Image style={styles.image} source={{ uri }}>
             {this.renderPropImages()}
           </Image>
         </View>
 
         <View style={styles.propContainer}>
-          <Text style={styles.addPropText}>
-            Add stickers to your image!
-          </Text>
+          <Text style={styles.addPropText}>Add stickers to your image!</Text>
 
           <PropPicker onPickProp={this.addPropToPicture} />
         </View>
@@ -158,7 +155,7 @@ class CameraScreen extends Component {
 }
 
 const createPhoto = gql`
- mutation createPhoto($fileId: ID!) {
+  mutation createPhoto($fileId: ID!) {
     createPhoto(fileId: $fileId) {
       id
       file {
@@ -167,6 +164,6 @@ const createPhoto = gql`
       }
     }
   }
- `;
+`;
 
 export default graphql(createPhoto, { name: 'createPhoto' })(CameraScreen);

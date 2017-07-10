@@ -5,7 +5,7 @@ import { createResponder } from 'react-native-gesture-responder';
 class TransformableImage extends Component {
   state = {
     pan: new Animated.ValueXY(),
-    scale: new Animated.Value(1.05)
+    scale: new Animated.Value(1.05),
   };
 
   componentWillMount() {
@@ -35,7 +35,7 @@ class TransformableImage extends Component {
       },
       onResponderTerminate: (evt, gestureState) => {},
 
-      debug: false
+      debug: false,
     });
 
     this._animateBack();
@@ -45,8 +45,8 @@ class TransformableImage extends Component {
     null,
     {
       dx: this.state.pan.x,
-      dy: this.state.pan.y
-    }
+      dy: this.state.pan.y,
+    },
   ]);
 
   _processPinch = (event, gestureState) => {
@@ -59,7 +59,7 @@ class TransformableImage extends Component {
   _animateBack() {
     const options = {
       toValue: this.state.scale._value - 0.05,
-      friction: 3
+      friction: 3,
     };
 
     Animated.spring(this.state.scale, options).start();
@@ -68,7 +68,7 @@ class TransformableImage extends Component {
   _animateIn() {
     const options = {
       toValue: this.state.scale._value + 0.05,
-      friction: 3
+      friction: 3,
     };
 
     Animated.spring(this.state.scale, options).start();
@@ -77,12 +77,12 @@ class TransformableImage extends Component {
   _setInitialPosition() {
     this.state.pan.setOffset({
       x: this.state.pan.x._value,
-      y: this.state.pan.y._value
+      y: this.state.pan.y._value,
     });
 
     this.state.pan.setValue({
       x: 0,
-      y: 0
+      y: 0,
     });
   }
 
@@ -93,8 +93,7 @@ class TransformableImage extends Component {
     return (
       <Animated.View
         style={[styles.container, this.props.style, { transform }]}
-        {...this._panResponder}
-      >
+        {...this._panResponder}>
         {this.props.children}
       </Animated.View>
     );
@@ -103,8 +102,8 @@ class TransformableImage extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute'
-  }
+    position: 'absolute',
+  },
 });
 
 export default TransformableImage;

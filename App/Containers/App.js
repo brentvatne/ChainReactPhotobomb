@@ -4,17 +4,14 @@ import RootScreen from './RootScreen';
 import {
   ApolloClient,
   ApolloProvider,
-  createNetworkInterface
+  createNetworkInterface,
 } from 'react-apollo';
 import {
   SubscriptionClient,
-  addGraphQLSubscriptions
+  addGraphQLSubscriptions,
 } from 'subscriptions-transport-ws';
-import codePush from 'react-native-code-push';
-
-const codePushOptions = {
-  checkFrequency: codePush.CheckFrequency.ON_APP_RESUME
-};
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
+import { ScreenOrientation } from 'expo';
 
 const GRAPHQL_ENDPOINT =
   'https://api.graph.cool/simple/v1/cj3g3v2hp18ag01621354vr2y';
@@ -23,26 +20,28 @@ const GRAPHQL_WEBSOCKET_ENDPOINT =
 
 const networkInterface = createNetworkInterface({ uri: GRAPHQL_ENDPOINT });
 const wsClient = new SubscriptionClient(GRAPHQL_WEBSOCKET_ENDPOINT, {
-  reconnect: true
+  reconnect: true,
 });
 const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
   networkInterface,
   wsClient
 );
 const client = new ApolloClient({
-  networkInterface: networkInterfaceWithSubscriptions
+  networkInterface: networkInterfaceWithSubscriptions,
 });
 
-class App extends Component {
+export default class App extends Component {
+  componentWillMount() {
+    ScreenOrientation.allow(ScreenOrientation.Orientation.PORTRAIT);
+  }
+
   render() {
     return (
-      <ApolloProvider client={client}>
-        <RootScreen />
-      </ApolloProvider>
+      <ActionSheetProvider>
+        <ApolloProvider client={client}>
+          <RootScreen />
+        </ApolloProvider>
+      </ActionSheetProvider>
     );
   }
 }
-
-App = codePush(codePushOptions)(App);
-
-export default App;

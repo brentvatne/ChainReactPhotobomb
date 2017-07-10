@@ -1,31 +1,34 @@
 {
-	"name": "ChainReactPhotobomb",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest"
-	},
-	"dependencies": {
-		"react": "16.0.0-alpha.6",
-		"react-apollo": "^1.4.2",
-		"react-native": "0.44.2",
-		"react-native-code-push": "^3.0.0-beta",
-		"react-native-gesture-responder": "^0.1.1",
-		"react-native-image-picker": "^0.26.3",
-		"react-native-vector-icons": "^4.2.0",
-		"react-native-view-shot": "^1.9.1",
-		"react-navigation": "^1.0.0-beta.11",
-		"subscriptions-transport-ws": "^0.6.0"
-	},
-	"devDependencies": {
-		"babel-jest": "20.0.3",
-		"babel-preset-react-native": "1.9.2",
-		"jest": "20.0.4",
-		"prettier-eslint": "^6.2.3",
-		"react-test-renderer": "16.0.0-alpha.6"
-	},
-	"jest": {
-		"preset": "react-native"
-	}
+  "name": "ChainReactPhotobomb",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "scripts": {
+    "start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "test": "node node_modules/jest/bin/jest.js --watch",
+    "lint": "eslint .",
+    "prettier": "eslint . --fix"
+  },
+  "dependencies": {
+    "@expo/react-native-action-sheet": "^1.0.0",
+    "expo": "^18.0.0",
+    "react": "16.0.0-alpha.12",
+    "react-apollo": "^1.4.2",
+    "react-native": "0.45.1",
+    "react-native-gesture-responder": "^0.1.1",
+    "react-navigation": "^1.0.0-beta.11",
+    "subscriptions-transport-ws": "^0.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.2.0",
+    "eslint-config-react-native-prettier": "^1.0.0",
+    "jest-expo": "^18.0.0",
+    "react-native-scripts": "0.0.40"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  }
 }

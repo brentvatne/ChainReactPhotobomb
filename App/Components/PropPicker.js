@@ -7,11 +7,11 @@ class PropPicker extends Component {
     onPickProp: () => {},
     style: {},
     propImageContainerStyle: {},
-    propImageStyle: {}
+    propImageStyle: {},
   };
 
   state = {
-    selectedProp: null
+    selectedProp: null,
   };
 
   selectProp = selectedProp => {
@@ -22,8 +22,7 @@ class PropPicker extends Component {
     return (
       <TouchableOpacity
         style={[styles.propContainer, this.props.propImageContainerStyle]}
-        onPress={() => this.selectProp(item)}
-      >
+        onPress={() => this.selectProp(item)}>
         <Image
           source={item}
           style={[styles.prop, this.props.propImageStyle]}
@@ -48,17 +47,17 @@ class PropPicker extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10
+    padding: 10,
   },
   prop: {
     width: 80,
-    height: 80
+    height: 80,
   },
   propContainer: {
     backgroundColor: 'white',
     padding: 4,
-    margin: 4
-  }
+    margin: 4,
+  },
 });
 
 export default PropPicker;

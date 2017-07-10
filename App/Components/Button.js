@@ -7,15 +7,14 @@ class Button extends Component {
 
   static defaultProps = {
     text: 'Submit',
-    onPress: () => {}
+    onPress: () => {},
   };
 
   render() {
     return (
       <TouchableOpacity
         style={styles.buttonContainer}
-        onPress={this.props.onPress}
-      >
+        onPress={this.props.onPress}>
         <Text style={[styles.button, this.props.style]}>
           {this.props.children}
         </Text>
@@ -31,13 +30,13 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
     paddingLeft: 16,
     paddingRight: 16,
-    borderRadius: 2
+    borderRadius: 2,
   },
   button: {
     fontSize: 24,
     color: Colors.white,
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });
 
 export default Button;

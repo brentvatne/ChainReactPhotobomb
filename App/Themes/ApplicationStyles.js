@@ -5,20 +5,20 @@ import Colors from './Colors';
 const ApplicationStyles = {
   mainContainer: {
     flex: 1,
-    backgroundColor: Colors.transparent
+    backgroundColor: Colors.transparent,
   },
   container: {
     flex: 1,
     paddingTop: Metrics.baseMargin,
-    backgroundColor: Colors.transparent
+    backgroundColor: Colors.transparent,
   },
   fullScreen: {
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    position: 'absolute'
-  }
+    position: 'absolute',
+  },
 };
 
 export default ApplicationStyles;

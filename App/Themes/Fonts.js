@@ -1,6 +1,6 @@
 const type = {
   base: 'Avenir-Book',
-  bold: 'Avenir-Black'
+  bold: 'Avenir-Black',
 };
 
 const size = {
@@ -8,10 +8,10 @@ const size = {
   regular: 17,
   medium: 14,
   small: 12,
-  tiny: 8.5
+  tiny: 8.5,
 };
 
 export default {
   type,
-  size
+  size,
 };

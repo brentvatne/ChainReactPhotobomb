@@ -8,12 +8,13 @@ import {
   TouchableHighlight,
   FlatList,
   Modal,
-  AsyncStorage
+  AsyncStorage,
 } from 'react-native';
+import { connectActionSheet } from '@expo/react-native-action-sheet';
 import styles from './Styles/HomeScreenStyles';
+import { ImagePicker } from 'expo';
 import { Images, Colors, Metrics } from '../Themes';
 import { gql, graphql } from 'react-apollo';
-import ImagePicker from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import EULA from '../Components/EULA';
 
@@ -33,11 +34,7 @@ export const allPhotosQuery = gql`
 
 const photosSubscription = gql`
   subscription createPhoto {
-    Photo(
-      filter: {
-        mutation_in: [CREATED, UPDATED]
-      }
-    ) {
+    Photo(filter: { mutation_in: [CREATED, UPDATED] }) {
       mutation
       node {
         id
@@ -56,10 +53,11 @@ const PHOTO_MARGIN = 2;
 const PHOTO_SIZE = Metrics.screenWidth / 4 - PHOTO_MARGIN * 3;
 const EULA_STORAGE_KEY = '@Photobomb:EULA';
 
+@connectActionSheet
 class HomeScreen extends Component {
   state = {
     refreshing: false,
-    hasSeenEULA: true
+    hasSeenEULA: true,
   };
 
   constructor(props) {
@@ -88,22 +86,49 @@ class HomeScreen extends Component {
   };
 
   collectPicture = () => {
-    const options = {
-      title: 'Choose your Photobomb',
-      mediaType: 'photo',
-      allowsEditing: false,
-      storageOptions: {
-        skipBackup: true,
-        cameraRoll: false,
-        noData: true
+    let options = ['Take Photo', 'Choose from Library', 'Cancel'];
+    let cancelButtonIndex = 2;
+    this.props.showActionSheetWithOptions(
+      {
+        options,
+        cancelButtonIndex,
+      },
+      buttonIndex => {
+        // Do something here depending on the button index selected
+        if (buttonIndex === 0) {
+          this._openCameraAsync();
+        } else if (buttonIndex === 1) {
+          this._openLibraryAsync();
+        }
       }
+    );
+  };
+
+  _openCameraAsync = async () => {
+    const options = {
+      allowsEditing: false,
     };
 
-    ImagePicker.showImagePicker(options, this.handleImagePickerResponse);
+    let response = await ImagePicker.launchCameraAsync(
+      options,
+      this.handleImagePickerResponse
+    );
+    console.log({ response });
+    this.handleImagePickerResponse(response);
+  };
+
+  _openLibraryAsync = async () => {
+    const options = {
+      allowsEditing: false,
+    };
+
+    let response = await ImagePicker.launchImageLibraryAsync(options);
+    console.log({ response });
+    this.handleImagePickerResponse(response);
   };
 
   handleImagePickerResponse = response => {
-    if (response.didCancel) {
+    if (response.cancelled) {
       return;
     } else if (response.error) {
       return;
@@ -177,7 +202,7 @@ class HomeScreen extends Component {
           style={{
             width: PHOTO_SIZE,
             height: PHOTO_SIZE,
-            margin: PHOTO_MARGIN
+            margin: PHOTO_MARGIN,
           }}
         />
       </TouchableOpacity>
@@ -210,8 +235,7 @@ class HomeScreen extends Component {
         <TouchableHighlight
           underlayColor={Colors.darkPurple}
           style={styles.cameraButton}
-          onPress={this.collectPicture}
-        >
+          onPress={this.collectPicture}>
           <Icon name="photo-camera" style={styles.cameraIcon} />
         </TouchableHighlight>
 
@@ -226,7 +250,7 @@ class HomeScreen extends Component {
     if (!this.subscription && !nextProps.allPhotosQuery.loading) {
       this.subscription = nextProps.allPhotosQuery.subscribeToMore({
         document: photosSubscription,
-        updateQuery: prependNewPhotos
+        updateQuery: prependNewPhotos,
       });
     }
   }
@@ -261,7 +285,7 @@ const prependNewPhotos = (previousState, { subscriptionData }) => {
   const allPhotos = [newPhoto, ...previousState.allPhotos];
 
   return {
-    allPhotos
+    allPhotos,
   };
 };
 

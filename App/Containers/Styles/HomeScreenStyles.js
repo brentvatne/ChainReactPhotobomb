@@ -4,34 +4,34 @@ import { ApplicationStyles, Colors, Fonts, Metrics } from '../../Themes';
 export default StyleSheet.create({
   container: {
     backgroundColor: Colors.purple,
-    flex: 1
+    flex: 1,
   },
   contentWrapper: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   text: {
-    color: Colors.white
+    color: Colors.white,
   },
   backgroundImage: {
     width: '100%',
     position: 'absolute',
     bottom: 0,
     left: 0,
-    right: 0
+    right: 0,
   },
   appName: {
     color: Colors.white,
     backgroundColor: 'transparent',
     fontSize: 30,
     fontFamily: Fonts.bold,
-    marginTop: 10
+    marginTop: 10,
   },
   buttons: {
     marginTop: 40,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   cameraBar: {
     backgroundColor: Colors.purple,
@@ -41,7 +41,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderTopColor: Colors.darkPurple,
-    borderTopWidth: 3
+    borderTopWidth: 3,
   },
   cameraButton: {
     backgroundColor: Colors.purple,
@@ -52,14 +52,14 @@ export default StyleSheet.create({
     bottom: -9,
     left: Metrics.screenWidth / 2 - 37,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   cameraIcon: {
     color: Colors.white,
-    fontSize: 38
+    fontSize: 38,
   },
   modalBackground: {
     ...ApplicationStyles.fullScreen,
-    backgroundColor: Colors.lightPurpleTransparent
-  }
+    backgroundColor: Colors.lightPurpleTransparent,
+  },
 });

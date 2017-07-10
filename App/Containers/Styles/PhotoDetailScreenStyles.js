@@ -4,19 +4,19 @@ import { Colors } from '../../Themes';
 export default StyleSheet.create({
   container: {
     backgroundColor: 'black',
-    flex: 1
+    flex: 1,
   },
   image: {
-    flex: 1
+    flex: 1,
   },
   close: {
     position: 'absolute',
     top: 10,
-    right: 10
+    right: 10,
   },
   closeIcon: {
     color: 'white',
-    fontSize: 30
+    fontSize: 30,
   },
   loadingContainer: {
     position: 'absolute',
@@ -25,7 +25,7 @@ export default StyleSheet.create({
     right: 0,
     bottom: 0,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   flag: {
     position: 'absolute',
@@ -34,15 +34,15 @@ export default StyleSheet.create({
     right: 0,
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   flagIcon: {
     color: Colors.lightPurple,
     fontSize: 20,
-    marginRight: 5
+    marginRight: 5,
   },
   flagText: {
     color: Colors.lightPurple,
-    fontSize: 10
-  }
+    fontSize: 10,
+  },
 });
