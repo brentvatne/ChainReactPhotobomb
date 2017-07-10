@@ -1,1 +1,0 @@
-A real-time photostream for Chain React 2017!
