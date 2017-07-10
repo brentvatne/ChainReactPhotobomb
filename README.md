@@ -1,3 +1,14 @@
+# Fork of ChainReactPhotobomb
+
+Uses Expo / Create React Native App.
+
+## Running Locally
+- `yarn`
+- `yarn ios` or `yarn android`, or just `yarn start` and scan QR code
+with [Expo client](https://expo.io/).
+
+----------------------------------------------------------------------------------------------------------------
+
 # ChainReactPhotobomb
 The Chain React Photobomb app for iOS and Android, written in React Native. This app is a companion to the talk 
 "From Idea to App Store: A Guide to Shipping React Native Apps" from Chain React 2017.
@@ -11,12 +22,6 @@ If you'd like to add a feature or fix a bug, submit a Pull Request!
 * Composite the image and stickers into a new image
 * Upload the photo, show it in the realtime stream
 * Allow users to flag a photo as inappropriate (which immediately hides it)
-
-## Running Locally
-- Follow instructions under "Building Projects with Native Code" from the [React Native docs](https://facebook.github.io/react-native/docs/getting-started.html)
-- `yarn`
-- `react-native run-ios`
-- `react-native run-android`
 
 ## License
 

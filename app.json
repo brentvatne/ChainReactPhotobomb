@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Chain React Photobomb",
-    "description": "The Chain React Photobomb app for iOS and Android, written in React Native. This app is a companion to the talk 'From Idea to App Store: A Guide to Shipping React Native Apps' from Chain React 2017. If you'd like to add a feature or fix a bug, submit a Pull Request! https://github.com/cball/ChainReactPhotobomb",
+    "description": "The Chain React Photobomb app for iOS and Android, written in React Native. This app is a companion to the talk 'From Idea to App Store: A Guide to Shipping React Native Apps' from Chain React 2017. If you'd like to add a feature or fix a bug, submit a Pull Request! Fork of original project lives at: https://github.com/brentvatne/ChainReactPhotobomb",
     "slug": "chain-react-photobomb",
     "privacy": "public",
     "sdkVersion": "18.0.0",
